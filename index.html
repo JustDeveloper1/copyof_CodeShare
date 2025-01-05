@@ -94,6 +94,7 @@ SOFTWARE.
                 <option value="ts">TypeScript</option>
             </select>
             <button id="saveButton" class="button">Upload</button><button id="loadButton" class="button">Load</button>
+            <span class="warn">We are sorry, this language is currently unsupported.</span>
         </div>
         <span id="output"></span>
         <script defer>
@@ -159,6 +160,8 @@ SOFTWARE.
             setTimeout(() => {
                 var setVanta = ()=>{
                     if (window.VANTA) {
+                        const canvasElements = document.querySelectorAll('canvas');
+                        canvasElements.forEach(canvas => canvas.remove());
                           window.VANTA.HALO({
                           el: "#content",
                           mouseControls: true,
