@@ -53,7 +53,7 @@ body * {
     padding: 10px;
     padding-left: 20px;
     border-radius: 20px;
-    z-index: 2;
+    z-index: 2 !important;
     height: 200px;
     width: 79%;
     max-width: 79%;
@@ -76,7 +76,7 @@ body * {
 }
 #codeInput {
     background-color: transparent;
-    z-index: 3;
+    z-index: 3 !important;
     color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -163,4 +163,11 @@ canvas {
 }
 #output {
     word-wrap: break-word;
+}
+.warn {
+    position: fixed;
+    font-family: 'Fira Mono';
+    color: #FF9800;
+    translate: 3% -130%;
+    z-index: 4;
 }
