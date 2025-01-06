@@ -195,13 +195,13 @@ function highlightCode(code, lang) {
     const tokens = code.split(/(\s+|;|{|}|,|\(|\)|\n)/);
     const highlightedCode = tokens.map(token => {
         if (lang === 'javascript' || lang === 'typescript') {
-            if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+            if (token.match(/\/\/.*|\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         } else if (lang === 'html') {
-            if (token.match(/<!--[\s\S]*?-->/)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+            if (token.match(/<!--[\s\S]*?-->/)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         } else if (lang === 'css') {
-            if (token.match(/\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+            if (token.match(/\/\*[\s\S]*?\*\//)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         } else if (lang === 'lua') {
-            if (token.match(/--.*$/)) return `<span style="color:${syntaxFunctions[lang].comment}">${token}</span>`;
+            if (token.match(/--.*$/)) return `<span style="color:${syntaxHighlighting[lang].comment}">${token}</span>`;
         }
         if (lang === 'javascript' || lang === 'typescript') {
             if (token.match(syntaxFunc[lang])) return `<span style="color:${syntaxHighlighting[lang].function}">${token}</span>`;
