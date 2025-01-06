@@ -243,6 +243,20 @@ function highlightCode(code, lang) {
     return highlightedCode;
 }
 
+function showWarn() {
+    const warnElements = document.querySelectorAll('.warn');
+    warnElements.forEach(element => {
+        element.style.display = 'block';
+    });
+}
+function hideWarn() {
+    const warnElements = document.querySelectorAll('.warn');
+    warnElements.forEach(element => {
+        element.style.display = 'none';
+    });
+}
+
+
 codeInput.addEventListener('input', () => {
     const code = codeInput.value.replace(/&/g, '&amp').replace(/</g, '&lt').replace(/>/g, '&gt');
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
@@ -260,4 +274,10 @@ codeInput.addEventListener('input', () => {
 selectElement.addEventListener('change', function() {
     codeInput.className = '';
     codeInput.classList.add(selectElement.value);
+    if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') {
+        showWarn()
+    } else {
+        hideWarn()
+    }
 });
+hideWarn()
