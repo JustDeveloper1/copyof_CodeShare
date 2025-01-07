@@ -1,0 +1,152 @@
+<!-- 
+
+MIT License
+
+Copyright (c) 2025 JustStudio. <https://juststudio.is-a.dev/>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+\-->
+
+
+<!-- JustStudio. /-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeShare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://juststudio.is-a.dev/js/navbar.js" defer=""></script>
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        padding-top: 90px;
+        padding-left: 20px;
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+    </style>
+    <script>
+        if (!Clerk) {
+            window.onload = function() {
+                const Clerk = window.opener ? window.opener.clerk : null;
+                if (!Clerk) {
+                    window.open("https://juststudio.is-a.dev/account/?r=cs", "_blank");
+                    window.close();
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="accounts"></div>
+    <div id="content">
+        <script type="module" src="https://juststudio.is-a.dev/js/account.js" defer></script>
+        <h1>CodeShare (WORK IN PROGRESS). <a href="https://juststudio.is-a.dev/">made by JustStudio.</a></h1>
+        <textarea id="codeInput" placeholder="Loading..."></textarea>
+        <div class="btns">
+            <span class="warn">We are sorry, this language is currently unsupported.</span>
+        </div>
+        <span id="output"></span>
+        <script defer>    
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            
+            fetch(`https://api.juststudio.is-a.dev/cs/${id}`)
+                .then(response => {
+                    if (response.status === 404) {
+                        alert('not found!');
+                        throw new Error('Not Found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('output').innerHTML = data.code;
+                    const codeInput = document.getElementById('codeInput');
+                    codeInput.className = '';
+                    codeInput.classList.add(data.lang || data.langDone);
+                    codeInput.value = data.code;
+                    codeInput.disabled = true;
+                    codeInput.dispatchEvent(new Event('input'));
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        </script>
+        <a
+          href="https://juststudio.is-a.dev/"
+          rel="noreferrer noopener"
+          class="h-logo-link"
+        >
+          <img src="https://juststudio.is-a.dev/img/logo-200h.png" alt="Logo" class="h-logo" />
+        </a>
+        <div class="header"></div>
+        <script src="/js/code.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+        <script type="text/javascript" src="https://juststudio.is-a.dev/js/navbar.js" defer></script>
+        <script defer>
+
+            setTimeout(() => {
+                var setVanta = ()=>{
+                    if (window.VANTA) {
+                        const canvasElements = document.querySelectorAll('canvas');
+                        canvasElements.forEach(canvas => canvas.remove());
+                          window.VANTA.HALO({
+                          el: "#content",
+                          mouseControls: true,
+                          touchControls: true,
+                          gyroControls: false,
+                          minHeight: window.innerHeight,
+                          minWidth: window.innerWidth,
+                          baseColor: 0xc8,
+                          backgroundColor: 0x0,
+                          size: 0.80
+                        });
+                    } else {
+                        setTimeout(() => {
+                            setVanta()
+                        }, 100)
+                    }
+                }
+                setVanta();
+                setInterval(() => setVanta, 1000);
+                window.addEventListener('resize', setVanta);
+            }, 2000)
+        
+        </script>
+    </div>
+</body>
+</html>
