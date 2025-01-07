@@ -97,7 +97,7 @@ SOFTWARE.
                     const codeInput = document.getElementById('codeInput');
                     codeInput.className = '';
                     codeInput.classList.add(data.lang || data.langDone);
-                    codeInput.value = data.code;
+                    codeInput.value = document.getElementById('output').innerText;
                     codeInput.disabled = true;
                     codeInput.dispatchEvent(new Event('input'));
                 })
