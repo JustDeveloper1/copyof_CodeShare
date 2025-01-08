@@ -105,12 +105,14 @@ SOFTWARE.
                     let __has__badge = false;
                     fetch(`https://api.juststudio.is-a.dev/user/${data.authorId}`)
                         .then(response => {
+                            let __data2 = 'deleted';
                             if (response.status !== 404) {
-                                return response.json();
+                                __data2 = response.json();
                             }
+                            return __data2;
                         })
                         .then(data2 => {
-                            if (data2) {
+                            if (data2 !== 'deleted') {
                                 if (!data2.banned) {
                                     __user__name = '@'+data2.username;
                                     __user__avatar = data2.avatar;
