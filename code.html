@@ -95,6 +95,15 @@ SOFTWARE.
                 }
                 return output__;
             }
+
+            function decodeBadges(encoded) {
+                return Array.from({ length: 100 }, (_, index) => (encoded % Math.pow(10, index + 1) >= Math.pow(10, index)));
+            }
+            
+            badges[0] = true; // User has badge 1
+            badges[5] = true; // User has badge 6
+            const encodedBadges = encodeBadges(badges);
+            const decodedBadges = decodeBadges(encodedBadges);
             
             async function fetchData() {
                 try {
@@ -114,7 +123,7 @@ SOFTWARE.
             
                     let __user__avatar = "https://img.juststudio.is-a.dev/cs/no.png";
                     let __user__name = `deleted_user_${data.authorId}`;
-                    let __has__badge = false;
+                    let __user__badge = '';
             
                     const response2 = await fetch(`https://api.juststudio.is-a.dev/user/${data.authorId}`);
                     let __data2 = 'deleted';
@@ -126,24 +135,30 @@ SOFTWARE.
                         if (!__data2.banned) {
                             __user__name = '@' + __data2.username;
                             __user__avatar = __data2.avatar;
+                            if (decodeBadges(__data2.data.)[0] === true) {
+                                __user__badge = "JavaScript Developer";
+                            }
                         } else {
                             __user__name = `banned_user_${data.authorId}`;
                         }
                     }
-            
+                    
                     document.getElementById('output').innerHTML = `
                         <div class="info_">
                             <user>
                                 <img id="_user_avatar" src="${__user__avatar}">
                                 <span id="_user_name">${truncateString2(__user__name, 30)}</span>
-                                <badge id="_user_badge" style="display: none;"></badge>
+                                <badge id="_user_badge">${__user__badge}</badge>
                             </user>
                             <h1 id="_code_name">${truncateString2(data.name, 26)}
                                 <lang id="_code_lang">${data.lang || data.langDone}</lang>
                             </h1>
                         </div>
                     ` + document.getElementById('output').innerHTML;
-            
+
+                    if (__user__badge == '') {
+                        document.getElementById('_user_badge').style.display = 'none';
+                    }
                 } catch (error) {
                     console.error('Error:', error);
                 }
