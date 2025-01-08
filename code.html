@@ -100,12 +100,32 @@ SOFTWARE.
                     codeInput.value = document.getElementById('output').innerText;
                     codeInput.disabled = true;
                     codeInput.dispatchEvent(new Event('input'));
+                    let __user__avatar = "https://img.juststudio.is-a.dev/cs/no.png";
+                    let __user__name = `deleted_user_${data.authorId}`;
+                    let __has__badge = false;
+                    fetch(`https://api.juststudio.is-a.dev/user/${data.authorId}`)
+                        .then(response => {
+                            if !(response.status === 404) {
+                                return response.json();
+                            }
+                        })
+                        .then(data2 => {
+                            if (!data2.banned) {
+                                __user__name = '@'+data2.username;
+                                __user__avatar = data2.avatar;
+                            } else {
+                                __user__name = `banned_user_${data.authorId}`;
+                            }
+                        })
+                        .catch(err00 => {
+                            alert(err00);
+                        });
                     document.getElementById('output').innerHTML = `
                         <div class="info_">
                             <user>
-                                <img id="_user_avatar" src="https://img.juststudio.is-a.dev/cs/logo.png">
-                                <span id="_user_name">@user</span>
-                                <badge id="_user_badge">User</badge>
+                                <img id="_user_avatar" src="${__user__avatar}">
+                                <span id="_user_name">${__user__name}</span>
+                                <badge id="_user_badge" style="display: none;"></badge>
                             </user>
                             <h1 id="_code_name">${data.name}
                                 <lang id="_code_lang">${data.lang || data.langDone}</lang>
