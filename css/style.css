@@ -73,6 +73,9 @@ body * {
     -webkit-backdrop-filter: blur(16px) saturate(0.76) brightness(0.6);
     border: 2px solid white;
     text-shadow: 0px 0px 5px black;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    font-weight: 500;
 }
 #codeInput {
     background-color: transparent;
@@ -171,4 +174,81 @@ canvas {
     color: #FF9800;
     translate: 3% -130%;
     z-index: 4;
+}
+.info_ {
+    position: absolute;
+    width: 100.5%;
+    height: 50px;
+    bottom: 100%;
+    left: -0.25%;
+    margin-bottom: 5px;
+    z-index: 2 !important;
+    font-family: 'Fira Mono';
+    color: #BBC1E1;
+    line-height: 1.4;
+    font-size: 12px;
+    background-color: #00000057;
+    backdrop-filter: blur(16px) saturate(0.76) brightness(0.6);
+    -webkit-backdrop-filter: blur(16px) saturate(0.76) brightness(0.6);
+    border: 2px solid white;
+    text-shadow: 0px 0px 5px black;
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+user {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    padding-left: 30px;
+    span {
+        color: white;
+        font-size: 1.15em;
+        font-weight: 600;
+    }
+    img {
+        background-color: white;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        position: absolute;
+        left: 10px;
+    }
+    badge {
+        color: #FFC107;
+        font-size: 0.8em;
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 1px;
+        background-color: #ffc1074d;
+        border: 2px solid;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #ffc107c9;
+        transition: 300ms;
+    }
+    badge:hover {
+        color: black;
+        background-color: #FFC107;
+        border-color: transparent;
+        border-radius: 5px;
+    }
+}
+h1 lang {
+    position: fixed;
+    top: 115.5%;
+    right: 10px;
+    font-size: 10px;
+    opacity: 0.5;
+    font-weight: 400;
 }
