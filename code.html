@@ -110,11 +110,13 @@ SOFTWARE.
                             }
                         })
                         .then(data2 => {
-                            if (!data2.banned) {
-                                __user__name = '@'+data2.username;
-                                __user__avatar = data2.avatar;
-                            } else {
-                                __user__name = `banned_user_${data.authorId}`;
+                            if (data2) {
+                                if (!data2.banned) {
+                                    __user__name = '@'+data2.username;
+                                    __user__avatar = data2.avatar;
+                                } else {
+                                    __user__name = `banned_user_${data.authorId}`;
+                                }
                             }
                         })
                         .catch(err00 => {
