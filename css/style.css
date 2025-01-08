@@ -209,13 +209,16 @@ user {
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    max-width: 40%;
     gap: 0px;
     padding-left: 30px;
+    overflow: hidden;
     span {
         color: white;
         font-size: 1.15em;
         font-weight: 600;
+        text-wrap-mode: nowrap;
     }
     img {
         background-color: white;
@@ -243,6 +246,11 @@ user {
         border-color: transparent;
         border-radius: 5px;
     }
+}
+.info_ h1 {
+    overflow: hidden;
+    max-width: 55%;
+    text-wrap-mode: nowrap;
 }
 h1 lang {
     position: fixed;
