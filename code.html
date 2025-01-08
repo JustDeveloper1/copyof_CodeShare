@@ -79,18 +79,7 @@ SOFTWARE.
         <div class="btns">
             <span class="warn">We are sorry, this language is currently unsupported.</span>
         </div>
-        <span id="output">
-            <div class="info_">
-                <user>
-                    <img id="_user_avatar" src="https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZGlzY29yZC9pbWdfMm50amxFZXZ3clhIdXAwUUVPeFlpU3QwWTdwIn0">
-                    <span id="_user_name">@system</span>
-                    <badge id="_user_badge">System</badge>
-                </user>
-                <h1 id="_code_name">404, Not Found!
-                    <lang id="_code_lang"></lang>
-                </h1>
-            </div>
-        </span>
+        <span id="output"></span>
         <script defer>    
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
@@ -111,6 +100,18 @@ SOFTWARE.
                     codeInput.value = document.getElementById('output').innerText;
                     codeInput.disabled = true;
                     codeInput.dispatchEvent(new Event('input'));
+                    document.getElementById('output').innerHTML = `
+                        <div class="info_">
+                            <user>
+                                <img id="_user_avatar" src="https://img.juststudio.is-a.dev/cs/logo.png">
+                                <span id="_user_name">@user</span>
+                                <badge id="_user_badge">User</badge>
+                            </user>
+                            <h1 id="_code_name">${data.name}
+                                <lang id="_code_lang">${data.lang || data.langDone}</lang>
+                            </h1>
+                        </div>
+                    `+document.getElementById('output').innerHTML;
                 })
                 .catch(error => {
                     console.error('Error:', error);
