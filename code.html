@@ -83,7 +83,16 @@ SOFTWARE.
         <script defer>    
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
-            
+            function truncateString(str, num) {
+                return str.length > num ? str.slice(0, num) : str;
+            }
+            function truncateString2(str, num) {
+                let output__ = truncateString(str, num);
+                if (str !== output__) {
+                    output__ += "...";
+                }
+                return output__;
+            }
             fetch(`https://api.juststudio.is-a.dev/cs/${id}`)
                 .then(response => {
                     if (response.status === 404) {
@@ -128,10 +137,10 @@ SOFTWARE.
                         <div class="info_">
                             <user>
                                 <img id="_user_avatar" src="${__user__avatar}">
-                                <span id="_user_name">${__user__name}</span>
+                                <span id="_user_name">${truncateString2(__user__name, 30)}</span>
                                 <badge id="_user_badge" style="display: none;"></badge>
                             </user>
-                            <h1 id="_code_name">${data.name}
+                            <h1 id="_code_name">${truncateString2(data.name, 26)}
                                 <lang id="_code_lang">${data.lang || data.langDone}</lang>
                             </h1>
                         </div>
