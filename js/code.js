@@ -261,6 +261,13 @@ codeInput.addEventListener('input', () => {
     const code = codeInput.value.replace(/&/g, '&amp').replace(/</g, '&lt').replace(/>/g, '&gt');
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
+    if (window.location.pathname == '/code') {
+        if (lang == 'python' || lang == 'c' || lang == 'cpp' || lang == 'csharp' || lang == 'go') {
+            showWarn();
+        } else {
+            hideWarn();
+        }
+    }
     let outputText;
     if (lang !== 'text') {
         const highlighted = highlightCode(code, lang);
@@ -293,16 +300,18 @@ codeInput.addEventListener('input', () => {
     output.addEventListener('scroll', syncLines);
 });
 
-selectElement.addEventListener('change', function() {
-    codeInput.className = '';
-    codeInput.classList.add(selectElement.value);
-    if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') {
-        showWarn()
-    } else {
-        hideWarn()
-    }
-});
-hideWarn();
+try {
+    selectElement.addEventListener('change', function() {
+        codeInput.className = '';
+        codeInput.classList.add(selectElement.value);
+        if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') {
+            showWarn()
+        } else {
+            hideWarn()
+        }
+    });
+    hideWarn();
+} catch {};
 
 output.appendChild(codeInput);
 
