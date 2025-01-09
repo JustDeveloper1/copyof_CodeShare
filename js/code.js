@@ -268,14 +268,14 @@ codeInput.addEventListener('input', () => {
     } else {
        outputText = code;
     }
-    
-    output.innerHTML = outputText.replaceAll('\n', '<br>');
+
+    const codeContainer = document.createElement('div');
+    codeContainer.id = 'text';
+    output.appendChild(codeContainer);
+    codeContainer.innerHTML = outputText.replaceAll('\n', '<br>');
 
     const linesContainer = document.createElement('div');
-    linesContainer.id = 'lines_';/*
-    linesContainer.style.position = 'absolute';
-    linesContainer.style.left = '0';
-    linesContainer.style.top = '0';*/
+    linesContainer.id = 'lines_';
     linesContainer.style.pointerEvents = 'none';
     output.appendChild(linesContainer);
 
@@ -291,6 +291,17 @@ codeInput.addEventListener('input', () => {
     };
     
     output.addEventListener('scroll', syncLines);
+
+    const data_element1 = document.getElementById('codeInput');
+    const data_element2 = document.getElementById('text');
+    
+    data_element1.addEventListener('scroll', () => {
+        data_element2.scrollTop = data_element1.scrollTop;
+    });
+    
+    data_element2.addEventListener('scroll', () => {
+        data_element1.scrollTop = data_element2.scrollTop;
+    });
 });
 
 selectElement.addEventListener('change', function() {
