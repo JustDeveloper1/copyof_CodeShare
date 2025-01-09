@@ -286,6 +286,13 @@ codeInput.addEventListener('input', () => {
     linesContainer.style.pointerEvents = 'none';
     output.appendChild(linesContainer);
 
+    codeInput.addEventListener('scroll', () => {
+        codeContainer.scrollTop = codeInput.scrollTop;
+    });
+    codeContainer.addEventListener('scroll', () => {
+        codeInput.scrollTop = codeContainer.scrollTop;
+    });
+
     const lines = outputText.split('\n').length;
     linesContainer.innerHTML = '';
     for (let i = 1; i <= lines; i++) {
@@ -314,12 +321,3 @@ try {
 } catch {};
 
 output.appendChild(codeInput);
-
-const data_element1 = document.getElementById('codeInput');
-const data_element2 = document.getElementById('text');
-data_element1.addEventListener('scroll', () => {
-    data_element2.scrollTop = data_element1.scrollTop;
-});
-data_element2.addEventListener('scroll', () => {
-    data_element1.scrollTop = data_element2.scrollTop;
-});
