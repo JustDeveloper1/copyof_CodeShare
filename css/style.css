@@ -272,3 +272,14 @@ h1 lang {
     left: 5px;
     top: 10px;
 }
+#output #text {
+    overflow: hidden;
+    max-height: 100%;
+    z-index: 20 !important;
+}
+textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    z-index: -1 !important;
+    border-width: 0 !important;
+}
