@@ -291,17 +291,6 @@ codeInput.addEventListener('input', () => {
     };
     
     output.addEventListener('scroll', syncLines);
-
-    const data_element1 = document.getElementById('codeInput');
-    const data_element2 = document.getElementById('text');
-    
-    data_element1.addEventListener('scroll', () => {
-        data_element2.scrollTop = data_element1.scrollTop;
-    });
-    
-    data_element2.addEventListener('scroll', () => {
-        data_element1.scrollTop = data_element2.scrollTop;
-    });
 });
 
 selectElement.addEventListener('change', function() {
@@ -313,4 +302,15 @@ selectElement.addEventListener('change', function() {
         hideWarn()
     }
 });
-hideWarn()
+hideWarn();
+
+output.appendChild(codeInput);
+
+const data_element1 = document.getElementById('codeInput');
+const data_element2 = document.getElementById('text');
+data_element1.addEventListener('scroll', () => {
+    data_element2.scrollTop = data_element1.scrollTop;
+});
+data_element2.addEventListener('scroll', () => {
+    data_element1.scrollTop = data_element2.scrollTop;
+});
