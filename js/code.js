@@ -268,7 +268,29 @@ codeInput.addEventListener('input', () => {
     } else {
        outputText = code;
     }
+    
     output.innerHTML = outputText.replaceAll('\n', '<br>');
+
+    const linesContainer = document.createElement('div');
+    linesContainer.id = 'lines_';/*
+    linesContainer.style.position = 'absolute';
+    linesContainer.style.left = '0';
+    linesContainer.style.top = '0';*/
+    linesContainer.style.pointerEvents = 'none';
+    output.appendChild(linesContainer);
+
+    const lines = outputText.split('\n').length;
+    linesContainer.innerHTML = '';
+    for (let i = 1; i <= lines; i++) {
+        linesContainer.innerHTML += `<span>${i}<br></span>`;
+    }
+
+    const syncLines = () => {
+        const outputScrollTop = output.scrollTop;
+        linesContainer.style.transform = `translateY(${outputScrollTop}px)`;
+    };
+    
+    output.addEventListener('scroll', syncLines);
 });
 
 selectElement.addEventListener('change', function() {
