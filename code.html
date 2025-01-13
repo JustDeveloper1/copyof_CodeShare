@@ -147,7 +147,7 @@ SOFTWARE.
                         }
                     }
                     const pre_data_lang = data.lang || data.langDone;
-                    const data_lang = langClass ? languageClasses[pre_data_lang] : 'text';
+                    let data_lang = pre_data_lang ? languageClasses[pre_data_lang] : 'text';
                     document.getElementById('output').innerHTML = `
                         <div class="info_">
                             <user>
