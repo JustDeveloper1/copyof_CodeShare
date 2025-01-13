@@ -117,12 +117,15 @@ SOFTWARE.
                     }
                     const data = await response.json();
                     document.getElementById('output').innerHTML = data.code;
-                    const codeInput = document.getElementById('codeInput');
-                    codeInput.className = '';
-                    codeInput.classList.add(data.lang || data.langDone);
-                    codeInput.value = document.getElementById('output').innerText;
-                    codeInput.disabled = true;
-                    codeInput.dispatchEvent(new Event('input'));
+                    let codeInput = document.getElementById('codeInput');
+                    function updCodeInput() {
+                        codeInput.className = '';
+                        codeInput.classList.add(data.lang || data.langDone);
+                        codeInput.value = document.getElementById('output').innerText;
+                        codeInput.disabled = true;
+                        codeInput.dispatchEvent(new Event('input'));
+                    }
+                    try {updCodeInput();} catch {codeInput_();updCodeInput();};
             
                     let __user__avatar = "https://img.juststudio.is-a.dev/cs/no.png";
                     let __user__name = `deleted_user_${data.authorId}`;
