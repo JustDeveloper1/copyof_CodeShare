@@ -256,18 +256,14 @@ function hideWarn() {
         element.style.display = 'none';
     });
 }
-
+try {hideWarn();} catch {};
 
 codeInput.addEventListener('input', () => {
     const code = codeInput.value.replace(/&/g, '&amp').replace(/</g, '&lt').replace(/>/g, '&gt');
     const langClass = Array.from(codeInput.classList).find(cls => languageClasses[cls]);
     const lang = langClass ? languageClasses[langClass] : 'text';
     if (window.location.pathname == '/code') {
-        if (lang == 'python' || lang == 'c' || lang == 'cpp' || lang == 'csharp' || lang == 'go') {
-            showWarn();
-        } else {
-            hideWarn();
-        }
+        if (lang == 'python' || lang == 'c' || lang == 'cpp' || lang == 'csharp' || lang == 'go') {showWarn();} else {hideWarn();}
     } else {
         try {
             document.getElementById('text').remove();
