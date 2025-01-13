@@ -312,7 +312,7 @@ try {
     selectElement.addEventListener('change', function() {
         codeInput.className = '';
         codeInput.classList.add(selectElement.value);
-        if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') showWarn() else hideWarn();
+        if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') {showWarn();} else {hideWarn();}
     });
     hideWarn();
 } catch {};
