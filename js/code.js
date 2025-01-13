@@ -287,11 +287,25 @@ codeInput.addEventListener('input', () => {
     output.appendChild(codeContainer);
     codeContainer.innerHTML = outputText.replaceAll('\n', '<br>');
 
-    const linesContainer = document.createElement('div');
-    linesContainer.id = 'lines_';
-    linesContainer.style.pointerEvents = 'none';
-    output.appendChild(linesContainer);
-
+    function addLines() {
+        const linesContainer = document.createElement('div');
+        linesContainer.id = 'lines_';
+        linesContainer.style.pointerEvents = 'none';
+        output.appendChild(linesContainer);
+    }
+    if (window.location.pathname == '/code') {
+        setTimeout(() => {
+            addLines();
+            try {
+                codeInput.placeholder = '';
+            } catch {
+                try {
+                    document.getElementById('codeInput').placeholder = '';
+                } catch {}
+            }
+        }, 100)
+    } else {addLines();}
+    
     codeInput.addEventListener('scroll', () => {
         codeContainer.scrollTop = codeInput.scrollTop;
     });
