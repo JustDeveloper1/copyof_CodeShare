@@ -212,7 +212,13 @@ SOFTWARE.
                 setInterval(() => setVanta, 1000);
                 window.addEventListener('resize', setVanta);
             }, 2000)
-        
+
+            setInterval(() => {
+                try {
+                    document.getElementById('codeInput').placeholder = '';
+                } catch {}
+            },100)
+            
         </script>
     </div>
 </body>
