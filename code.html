@@ -163,11 +163,14 @@ SOFTWARE.
                     if (__user__badge == '') {
                         document.getElementById('_user_badge').style.display = 'none';
                     }
+
+                    codeInput.remove();
                 } catch (error) {
                     console.error('Error:', error);
                 }
             }
             setTimeout(()=>fetchData,10);
+            fetchData();
         </script>
         <a
           href="https://juststudio.is-a.dev/"
