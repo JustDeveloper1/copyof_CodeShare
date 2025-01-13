@@ -24,7 +24,8 @@ SOFTWARE.
 
 */
 
-const codeInput = document.getElementById('codeInput');
+let codeInput = document.getElementById('codeInput');
+const placeholder_ = codeInput.placeholder;
 const output = document.getElementById('output');
 const selectElement = document.querySelector('select');
 
@@ -311,13 +312,16 @@ try {
     selectElement.addEventListener('change', function() {
         codeInput.className = '';
         codeInput.classList.add(selectElement.value);
-        if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') {
-            showWarn()
-        } else {
-            hideWarn()
-        }
+        if (selectElement.value == 'python' || selectElement.value == 'c' || selectElement.value == 'cpp' || selectElement.value == 'csharp' || selectElement.value == 'go') showWarn() else hideWarn();
     });
     hideWarn();
 } catch {};
 
-output.appendChild(codeInput);
+function codeInput_() {
+    output.innerHTML += `<textarea id="codeInput" placeholder="${placeholder_ || 'Code here'}"></textarea>`
+}
+
+try {
+    output.appendChild(codeInput);
+} catch codeInput_();
+if (!(codeInput)) codeInput_();
