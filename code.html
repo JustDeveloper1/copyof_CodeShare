@@ -146,7 +146,8 @@ SOFTWARE.
                             __user__name = `banned_user_${data.authorId}`;
                         }
                     }
-                    
+                    const pre_data_lang = data.lang || data.langDone;
+                    const data_lang = langClass ? languageClasses[pre_data_lang] : 'text';
                     document.getElementById('output').innerHTML = `
                         <div class="info_">
                             <user>
@@ -155,7 +156,7 @@ SOFTWARE.
                                 <badge id="_user_badge">${__user__badge}</badge>
                             </user>
                             <h1 id="_code_name">${truncateString2(data.name, 26)}
-                                <lang id="_code_lang">${data.lang || data.langDone}</lang>
+                                <lang id="_code_lang">${data_lang}</lang>
                             </h1>
                         </div>
                     ` + document.getElementById('output').innerHTML;
