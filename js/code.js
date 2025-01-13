@@ -323,5 +323,5 @@ function codeInput_() {
 
 try {
     output.appendChild(codeInput);
-} catch codeInput_();
+} catch {codeInput_();}
 if (!(codeInput)) codeInput_();
