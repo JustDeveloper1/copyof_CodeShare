@@ -269,8 +269,10 @@ codeInput.addEventListener('input', () => {
             hideWarn();
         }
     } else {
-        document.getElementById('text').remove()
-        document.getElementById('lines_').remove()
+        try {
+            document.getElementById('text').remove();
+            document.getElementById('lines_').remove();
+        } catch {};
     }
     let outputText;
     if (lang !== 'text') {
